@@ -1,0 +1,40 @@
+[
+  {
+    "domain": "tensorflow-k3l9qr.dauqu.host",
+    "proxy": "http://localhost:37077"
+  },
+  {
+    "domain": "pinupchat-node-yp3yf.dauqu.host",
+    "proxy": "http://localhost:34771"
+  },
+  {
+    "domain": "pdfwale-opbbpi.dauqu.host",
+    "proxy": "http://localhost:37567"
+  },
+  {
+    "domain": "news-backend-h7itip.dauqu.host",
+    "proxy": "http://localhost:35407"
+  },
+  {
+    "domain": "eticketing-backend-sq9t5m.dauqu.host",
+    "proxy": "http://localhost:35427"
+  },
+  {
+    "domain": "election-backend-7gvwwj.dauqu.host",
+    "proxy": "http://localhost:41219"
+  },
+  {
+    "domain": "wordpress-bmjw3d.dauqu.host",
+    "proxy": "http://localhost:34783"
+  },
+  {
+    "domain": "ecommerce-791dt8.dauqu.host",
+    "proxy": "http://localhost:44131"
+  },
+  {
+    "domain": "ecommerce-imw2uf.dauqu.host",
+    "proxy": "http://localhost:32947"
+  },
+  { "domain": "dns.dauqu.host", "proxy": "http://localhost:40681" },
+  { "domain": "icici-d69xx.dauqu.host", "proxy": "http://localhost:45131" }
+]

