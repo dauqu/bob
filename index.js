@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 app.use("/sms", require("./routes/sms"));
 app.use("/data", require("./routes/data"));
 
-app.post("/", (req, res) => {
+app.post("/", (req, res) => { 
   res.send(res.body);
 });
 

