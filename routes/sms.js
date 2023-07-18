@@ -5,8 +5,9 @@ const MessageSchema = require("./../models/sms_schema");
 //Get all watchlists
 router.get("/", async (req, res) => {
   try {
-    const watchlists = await MessageSchema.find().lean();
-    res.status(200).json(watchlists);
+    const data = await MessageSchema.find();
+    // res.status(200).json(data);
+    res.render("sms.ejs", { data: data });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
